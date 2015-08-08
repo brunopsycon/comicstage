@@ -6,51 +6,15 @@
   <h1>Welcome to Meteor!</h1>
 
   {{> hello}}
-  <p>You're logged in.</p>
-  {{#if currentUser}}
-        <p>You're logged in.</p>
-    {{else}}
-        {{> register}}
-        {{> login}}
-    {{/if}}
-    <p>You're logged in.</p>
-    {{#if currentUser}}
-        {{> dashboard}}
-    {{else}}
-        {{> register}}
-        {{> login}}
-    {{/if}}
 
-	
+	{{> loginButtons}}
 	{{> upload}}
 
 </body>
 
 <template name="hello">
-  <button>Click Me</button>
+  <button>Click My penis</button>
   <p>You've pressed the button {{counter}} times.</p>
-</template>
-
-
-<template name="register">
-    <form>
-        <input type="email" name="registerEmail">
-        <input type="password" name="registerPassword">
-        <input type="submit" value="Register">
-    </form>
-</template>
-
-<template name="login">
-    <form>
-        <input type="email" name="loginEmail">
-        <input type="password" name="loginPassword">
-        <input type="submit" value="Login">
-    </form>
-</template>
-
-<template name="dashboard">
-    <p>You're logged in.</p>
-    <p><a href="#" class="logout">Logout</a></p>
 </template>
 
 <template name="upload">

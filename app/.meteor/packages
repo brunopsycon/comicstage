@@ -10,3 +10,5 @@ insecure
 tomi:upload-server
 tomi:upload-jquery
 twbs:bootstrap
+accounts-password
+accounts-ui
