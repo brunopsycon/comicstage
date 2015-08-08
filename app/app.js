@@ -76,7 +76,10 @@ if (Meteor.isClient) {
 }
 
 if (Meteor.isServer) {
-  Meteor.startup(function () {
-    // code to run on server at startup
-  });
+	Meteor.startup(function () {
+	  UploadServer.init({
+	    tmpDir: process.env.PWD + '/.uploads/tmp',
+	    uploadDir: process.env.PWD + '/.uploads/'
+	  })
+	});
 }
