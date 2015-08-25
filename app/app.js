@@ -1,18 +1,12 @@
+if (Meteor.isServer){
+	Meteor.publish("userData", function () {
+	    return Meteor.users.find({_id: this.userId},
+	        {fields: {'other': 1, 'things': 1}});
+	});
+}
 Meteor.startup(function(){
 	//colocar aqui a inicialização do upload
 });
 if (Meteor.isClient) {
-	// counter starts at 0
-	Session.setDefault('counter', 0);
-		Template.hello.helpers({
-			counter: function () {
-			return Session.get('counter');
-		}
-	});
-	Template.hello.events({
-			'click button': function () {
-			// increment the counter when button is clicked
-			Session.set('counter', Session.get('counter') + 1);
-		}
-	});
+	Meteor.subscribe('userData');
 }

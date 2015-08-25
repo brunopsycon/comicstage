@@ -1,0 +1,16 @@
+<template name='user_panel'>
+	<h1>Bem vindo {{currentUser.emails.[0].address}}</h1>
+	{{#if currentUser.profile.activity!='READER'}}
+		{{> user_comics}}
+	{{/if}}
+	
+</template>
+<template name='user_comics'>
+	<h2>Meus comics:</h2>
+	<ul>
+	{{#each comics}}
+		<li>{{name}}</li>
+	{{/each}}
+	</ul>
+	<a class='btn btn-default'  href='/new_comic'>novo comic</a>
+</template>

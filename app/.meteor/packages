@@ -12,3 +12,4 @@ tomi:upload-jquery
 twbs:bootstrap
 accounts-password
 accounts-ui
+iron:router
