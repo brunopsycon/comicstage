@@ -5,7 +5,7 @@ if(Meteor.isClient){
 	
 	Template.display.helpers({
 	images: function () {
-		return Images.find() // Where Images is an FS.Collection instance
+		Images.find() // Where Images is an FS.Collection instance
 	  }
 	});
 

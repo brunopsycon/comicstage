@@ -20,7 +20,3 @@ Router.route('/login',function(){
 	this.render('login');
 });
 
-Router.route('/display',function(){
-	this.render('display');
-});
-

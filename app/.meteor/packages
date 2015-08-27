@@ -13,3 +13,8 @@ twbs:bootstrap
 accounts-password
 accounts-ui
 iron:router
+cfs:standard-packages
+cfs:dropbox
+mrt:bootstrap-3
+cfs:gridfs
+cfs:filesystem

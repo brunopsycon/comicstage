@@ -15,7 +15,6 @@
 			<div class="collapse navbar-collapse" ids="bs-example-navbar-collapse-1">	
 				<ul class="nav navbar-nav">
 					<li><a href='/signin'>signin</a></li>
-					<li><a href='/display'>display</a></li>
 					<li><a href='/new_comic'>new comic</a></li>
 					<li><a href='/login'>login</a></li>	
 					<form class="navbar-form navbar-left" role="search">
