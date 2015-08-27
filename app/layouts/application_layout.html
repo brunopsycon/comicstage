@@ -3,11 +3,6 @@
 </head>
 <template name="application_layout">
 	{{>header}}
-	{{#if currentUser}} 
-		<div>
-			<a href='/panel'>painel de controle</a>
-		</div>
-	{{/if}}
 	{{> yield}}
 	<hr>
 </template>
