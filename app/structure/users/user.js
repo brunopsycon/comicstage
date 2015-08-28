@@ -1,11 +1,7 @@
 if (Meteor.isClient){
 	Template.user_comics.helpers({
 		comics: function(){
-			return [
-				{name: 'teste'},
-				{name: 'bruno'},
-				{name: 'loko'}
-			];
+			return Images.find({owner_id: Meteor.userId()});
 		}
 	});
 }
