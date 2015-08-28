@@ -4,9 +4,9 @@ if(Meteor.isClient){
 	});
 	
 	Template.display.helpers({
-	images: function () {
-		return Images.find() // Where Images is an FS.Collection instance
-	  }
+		images: function () {
+			return Images.find({owner_id: Meteor.userId()}) // Where Images is an FS.Collection instance
+		}
 	});
 
 	Session.setDefault("counter", 0);

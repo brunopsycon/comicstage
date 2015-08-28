@@ -1,0 +1,10 @@
+<template name='display'>
+	<h3>Display</h3>
+	  <div class='display'>
+	    {{#each images}}
+	      <div>
+		<a href='{{this.url}}' target="_blank"><img src="{{this.url store='images' uploading='uploading.gif' storing='uploading.gif'}}" alt="" class="thumbnail" /></a>
+	      </div>
+	    {{/each}}
+	</div>
+</template>
