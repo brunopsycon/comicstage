@@ -1,0 +1,9 @@
+AppController = RouteController.extend({
+  layoutTemplate: 'application_layout'
+});
+
+AppController.events({
+  'click [data-action=logout]' : function() {
+    AccountsTemplates.logout();
+  }
+});

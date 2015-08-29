@@ -6,7 +6,7 @@ Router.route('/panel', {
   controller: 'PanelController'
 });
 Router.plugin('ensureSignedIn', {
-  only: ['panel']
+  only: ['dashboard']
 });
 Router.route('/edit_comic',function(){
 	this.render('edit_comic');
