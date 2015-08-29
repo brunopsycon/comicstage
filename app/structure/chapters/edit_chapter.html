@@ -1,25 +1,21 @@
-<template name="edit_comic">
+<template name="edit_chapter">
 	<h1>informations</h1>
 	<form class="form form-inline">
 		<label>name:</label>
 		<input value="name" class="form-control"><br>
-		<label>genre:</label>
-		<input name="genre" class="form-control"><br>
 		<label>visible:</label>
 		<input type="checkbox" name="visible"><br>
 		<label>description:</label>
 		<input name="description" class="form-control"><br>
-		<label>icon image:</label>
-		<input name="icon_image" class="form-control"><br>
-		<label>landscape image:</label>
-		<input name="landscape_image" class="form-control"><br>
+		<label>cover image:</label>
+		<input name="cover_image" class="form-control"><br>
 		<input type="submit" value="submit" class="btn btn-default">
 	</form>
-	<h1>chapters</h1>
-	<ul>
-		{{#each chapters}}
-			<li><a href="{{edit_url}}">{{name}}</a> - {{description}}</li>
+	<h1>pages</h1>
+	<div>
+		{{#each pages}}
+			<img src="{{url}}">
 		{{/each}}
-	</ul>
+	</div>
 	<a href="new_chapter" class="btn btn-default">new chapter</a>
 </template>

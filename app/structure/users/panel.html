@@ -9,7 +9,7 @@
 	<h2>Meus comics:</h2>
 	<ul>
 	{{#each comics}}
-		<li>{{name}}</li>
+		<li><a href='{{edit_path}}'>{{name}}</a> - {{description}}</li>
 	{{/each}}
 	</ul>
 </template>

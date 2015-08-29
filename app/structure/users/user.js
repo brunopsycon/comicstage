@@ -1,7 +1,11 @@
 if (Meteor.isClient){
 	Template.user_comics.helpers({
 		comics: function(){
-			return Images.find({owner_id: Meteor.userId()});
+			return [
+				{name: 'naruto', description: 'ninja mto loko'},
+				{name: 'dbz', description: 'lutas lokas'}
+			]
+
 		}
 	});
 }
