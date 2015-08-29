@@ -18,8 +18,9 @@
 	<h1>chapters</h1>
 	<ul>
 		{{#each chapters}}
-			<li><a href="{{edit_url}}">{{name}}</a> - {{description}}</li>
+		<li><a href="{{edit_url}}">{{name}}</a> - {{description}}</li>
 		{{/each}}
+		<li><a href="edit_chapter">new chapter</a></li>
 	</ul>
 	<a href="new_chapter" class="btn btn-default">new chapter</a>
 </template>
