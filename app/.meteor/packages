@@ -1,26 +1,20 @@
 # Meteor packages used by this project, one per line.
+# Check this file (and the other files in this directory) into your repository.
 #
 # 'meteor add' and 'meteor remove' will edit this file for you,
 # but you can also edit it by hand.
 
 meteor-platform
-less
+autopublish
+insecure
+tomi:upload-server
+tomi:upload-jquery
+twbs:bootstrap
 accounts-password
-useraccounts:bootstrap
-alanning:roles
-zimme:iron-router-active
-cmather:handlebars-server@0.2.0
-dburles:collection-helpers
-reywood:publish-composite
-momentjs:moment
-underscorestring:underscore.string
-matb33:collection-hooks
-dburles:factory
-anti:fake
-cunneen:mailgun
-iron:router@1.0.0
-yasinuslu:blaze-meta
-aldeed:collection2
-aldeed:autoform
+accounts-ui
+iron:router
 cfs:standard-packages
+cfs:dropbox
+mrt:bootstrap-3
+cfs:gridfs
 cfs:filesystem

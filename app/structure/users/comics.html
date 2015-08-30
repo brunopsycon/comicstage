@@ -1,0 +1,8 @@
+<template name="user_comics">
+	<ul class="user-comics">
+		{{#each comics}}
+		<li><a href='edit_comic/{{_id}}'>{{name}}</a> - {{description}} <a id="delete_comic">X</a></li>
+		{{/each}}
+		<li><button id="new_comic">new comic</button></li>
+	</ul>
+</template>

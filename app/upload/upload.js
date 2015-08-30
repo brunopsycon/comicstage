@@ -5,7 +5,7 @@ Images = new FS.Collection("images", {
 });
 
 if (Meteor.isClient) {		
-	Template.new_comic.events({
+	Template.edit_page.events({
 	'click button': function() {
 		Session.set("counter",Session.get("counter") +1);
 	},
