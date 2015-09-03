@@ -1,4 +1,4 @@
-if(Meteor.isClient){
+if (Meteor.isClient){
 	Template.edit_comic.events({
 		'submit' : function(evt){
 			evt.preventDefault();
