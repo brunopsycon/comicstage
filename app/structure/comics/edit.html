@@ -1,30 +1,12 @@
 <template name="edit_comic">
 	<h1>informations</h1>
 	<form class="form form-inline">
+		{{#each form_data}}
 		<div class="row">
-			<span class="col-md-4"><label>name:</label></span>
-			<span class="col-md-8"><input value="{{name}}" name="name" class="form-control"><br></span>
+			<span class="col-md-4"><label>{{label_text}}</label></span>
+			<span class="col-md-8"><input type="{{form_type}}" value="{{name}}" name="{{form_name}}" class="form-control"><br></span>
 		</div>
-		<div class="row">
-			<span class="col-md-4"><label>genre:</label></span>
-			<span class="col-md-8"><input value="{{genre}}" name="genre" class="form-control"><br></span>
-		</div>
-		<div class="row">
-			<span class="col-md-4"><label>visible:</label></span>
-			<span class="col-md-8"><input value="{{visible}}" type="checkbox" name="visible"><br></span>
-		</div>
-		<div class="row">
-			<span class="col-md-4"><label>description:</label></span>
-			<span class="col-md-8"><input value="{{description}}" name="description" class="form-control"><br></span>
-		</div>
-		<div class="row">
-			<span class="col-md-4"><label>icon image:</label></span>
-			<span class="col-md-8"><input value="{{icon_image}}" name="icon_image" class="form-control"><br></span>
-		</div>
-		<div class="row">
-			<span class="col-md-4"><label>landscape image:</label></span>
-			<span class="col-md-8"><input value="{{landscape_image}}" name="landscape_image" class="form-control"><br></span>
-		</div>
+		{{/each}}
 		<input type="submit" value="submit" class="btn btn-default">
 	</form>
 	<h1>chapters</h1>
@@ -32,6 +14,6 @@
 		{{#each chapters}}
 		<li><a href="{{edit_url}}">{{name}}</a> - {{description}}</li>
 		{{/each}}
-		<li><a href="edit_chapter">new chapter</a></li>
+		<li><a href="">new chapter</a></li>
 	</ul>
 </template>
