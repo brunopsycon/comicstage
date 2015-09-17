@@ -18,3 +18,6 @@ cfs:dropbox
 mrt:bootstrap-3
 cfs:gridfs
 cfs:filesystem
+mquandalle:jade
+stylus
+coffeescript
