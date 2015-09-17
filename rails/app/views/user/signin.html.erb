@@ -1,0 +1,16 @@
+<div class='container'>
+	<div class='row'>
+		<span class='col-md-4'></span>
+		<div class='col-md-4'>
+			<%= form_for :user do |f| %>
+				<%= f.label :email %><br>
+				<%= f.text_field :email , class: 'form-control' %><br>
+				<%= f.label :password %><br>
+				<%= f.password_field :password , class: 'form-control' %><br>
+				<%= f.submit :login , class: 'btn btn-default'%>
+				<p>if you don't have an account, <%= link_to 'signup', signup_path%></p>
+			<% end %>
+		</div>
+		<span class='col-md-4'></span>
+	</div>
+</div>

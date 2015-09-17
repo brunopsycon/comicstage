@@ -1,0 +1,108 @@
+<style>
+canvas{
+	width:100%;
+	height:100vh;
+}
+</style>
+<script>
+
+window.onload = function() {
+	var c = document.getElementById("editor");
+	var ctx = c.getContext("2d");
+	var coords=[];
+	var raw_data=$('#page_coordinates')[0].value.split(',')
+	for(tt=0;tt< raw_data.length;tt++)
+		raw_data[tt]=parseInt(raw_data[tt]);
+	for(tt=0;tt< raw_data.length;tt+=4){
+		coords.push([raw_data[tt+0],raw_data[tt+1]]);
+		coords.push([raw_data[tt+2],raw_data[tt+3]]);
+	}
+	c.setAttribute('width', c.offsetWidth);
+	c.setAttribute('height', c.offsetHeight);
+	var img = new Image();
+	img.src = '<%=@page.image.url%>';
+	img.onload = function() {
+                   	updateCanvas();
+	};
+	function min(a,b){return a<b?a:b;}
+	function updateCanvas(){
+		ctx.globalAlpha=1;
+		ctx.drawImage(img, 0, 0, img.width,    img.height,    // source rectangle
+                   0, 0, c.width, c.height);
+		ctx.fillStyle='#ff0000'
+		for(t=0;t<coords.length;t++){
+			ctx.fillRect(
+				coords[t][0]*c.width/img.width-5,
+				coords[t][1]*c.height/img.height-5,
+				10,10
+			);
+		}
+		for(t=0;t<coords.length;t+=2){
+			ctx.fillStyle='#0000ff'
+			ctx.globalAlpha=0.2;
+			ctx.fillRect(
+				coords[t][0]*c.width/img.width,
+				coords[t][1]*c.height/img.height,
+				(coords[t+1][0]-coords[t][0])*c.width/img.width,
+				(coords[t+1][1]-coords[t][1])*c.height/img.height
+			);
+			ctx.fillStyle='#ff0000'
+			ctx.globalAlpha=1;
+			ctx.font = '80px arial';
+			ctx.fillText(
+				1+t/2,
+				min(coords[t][0]*c.width/img.width,
+				coords[t+1][0])*c.width/img.width+10,
+				min(coords[t][1],coords[t+1][1])*c.height/img.height+80
+			);
+		}
+	}
+	updateCanvas();
+	c.addEventListener('click',function(e){
+		coords.push([(e.pageX-c.offsetLeft)*img.width/c.width,(e.pageY-c.offsetTop)*img.height/c.height]);
+		$('#page_coordinates').val(coords);
+		updateCanvas();
+	});
+	function remove_last(){
+		coords.pop();
+		$('#page_coordinates').val(coords);
+		updateCanvas();
+	}
+	function add_all(){
+		coords.push([0,0]);
+		coords.push([img.width,img.height]);
+		updateCanvas();
+	}
+	$('#button-remove_last')[0].addEventListener('click',function(){
+		remove_last();
+	},false);
+	$('#button-add_all')[0].addEventListener('click',function(){
+		add_all();
+	},false);
+	document.addEventListener('keydown',function(e){
+		switch (e.keyCode){
+			case 68:
+				remove_last();
+				break;
+		}
+	});
+}
+</script>
+<div class='container'>
+	<p id='output'></p>
+	<div class='col-md-12'>
+		<h3><%= link_to session_user.full_name, panel_path %> > <%= link_to @comic.name, edit_comic_path(id: @comic.id )%> > <%= link_to @chapter.caption, edit_chapter_path(id: @chapter.id) %> > Page <%= @page.index%></h3>
+	</div>
+</div>
+		<canvas id='editor' style="cursor:crosshair"></canvas>
+<div class='container'>
+	<div class='col-md-12'>
+		<a class='btn btn-default' id='button-add_all'>ADD ALL</a>
+		<a class='btn btn-default' id='button-remove_last'>REMOVE LAST</a>
+		<%= form_for :page do |f| %>
+			<%=f.hidden_field :id %>
+			<%=f.hidden_field :coordinates%>
+			<%=f.submit :register, class: 'btn btn-default' %>
+		<% end %>
+	</div>
+</div>

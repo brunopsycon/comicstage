@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Comics</title>
+		<meta charset='utf-8'/>
+		<%= stylesheet_link_tag    'application'%>
+		<%= javascript_include_tag 'application'%>
+		<%= javascript_include_tag params[:controller] if javascript_exists?(params[:controller])%>
+		<%= stylesheet_link_tag params[:controller] if css_exists?(params[:controller])%>
+		<%= csrf_meta_tags %>
+		<%= render 'layouts/facebook_sdk' %>
+	</head>
+	<body>
+		<script>
+			<% if flash[:error] %>
+				<% for error in flash[:error] do %>
+					alert('<%=error%>');
+				<% end %>
+				flash[:error]=Hash.new
+			<% end %>
+		</script>
+		<nav style='background-color:#111111;width:100%'>
+			<a href='<%= root_path %>'><b>ComicStage.com</b></a>
+		</nav>
+		<div style='min-height:100vh;margin:10px'>
+		<%= yield %>
+		</div>
+		<footer style='background-color:#111111;text-align:center;width:100%'>
+			<b>comic stage</b>
+		</footer>
+	</body>
+</html>

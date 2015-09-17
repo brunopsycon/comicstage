@@ -1,0 +1,12 @@
+<div class='container'>
+	<div class='row' style='text-align:center;height:300px;'>
+		<h2>Simplest way to host your comics</h2>
+		<% if logged %>
+			<%= link_to 'START UPLOADING RIGHT NOW', panel_path , class:'btn btn-default btn-large' %>
+			<p>or <%= link_to 'logout', logout_path %> if you don't want to stay connected</p> 
+		<% else %>
+			<%= link_to 'START USING RIGHT NOW', signup_path , class:'btn btn-default btn-large' %>
+			<p>or <%= link_to 'signin', signin_path %> if already have an account</p> 
+		<% end %>
+	</div>
+</div>

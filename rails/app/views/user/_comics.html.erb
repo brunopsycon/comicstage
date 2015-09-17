@@ -1,0 +1,9 @@
+	<% for comic in session_user.comics do %>
+		<div class='row'>
+			<%= image_tag comic.icon.url(:col1), style: 'display:inline', class: 'col-md-1' %>
+			<div style='display:inline-block'>
+				<b><%= link_to comic.name, edit_comic_path(id: comic.id)%></b>
+				<p><%= comic.description %></p>
+			</div>
+		</div>
+	<% end %>

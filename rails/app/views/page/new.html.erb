@@ -1,0 +1,11 @@
+<div class='container'>
+	<h1><%= @comic.name+'>'+@chapter.caption+'>' %>New page</h1>
+	<%= form_for :page do |f| %>
+		<%= f.hidden_field :chapter_id, value: @chapter.id %>
+		<%= f.label :index %><br>
+		<%= f.number_field :index, value: @chapter.pages.length+1, class: 'form-control' %><br>
+		<%= f.label :image %><br>
+		<%= f.file_field :image, class: 'file' %><br>
+		<%= f.submit :register, class: 'btn btn-default' %>
+	<% end %>
+</div>

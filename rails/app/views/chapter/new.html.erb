@@ -1,0 +1,15 @@
+<div class='container'>
+	<h1>New chapter</h1>
+	<%= form_for :chapter do |f| %>
+		<%= f.hidden_field :comic_id, value: @comic.id %>
+		<%= f.label :index %><br>
+		<%= f.number_field :index, value: @comic.chapters.length+1, class: 'form-control' %><br>
+		<%= f.label :cover %><br>
+		<%= f.file_field :cover, class: 'file' %><br>
+		<%= f.label :caption %><br>
+		<%= f.text_field :caption, class: 'form-control' %><br>
+		<%= f.label :synopsis %><br>
+		<%= f.text_area :synopsis, class: 'form-control' %><br>
+		<%= f.submit :register, class: 'btn btn-default' %>
+	<% end %>
+</div>

@@ -1,0 +1,17 @@
+<script>
+$(document).ready(function() {
+ 
+  $("#owl-demo").owlCarousel({
+    items : 3,
+    lazyLoad : true,
+    navigation : true
+  }); 
+ 
+});
+</script>
+<div id="owl-demo" class="owl-carousel">
+	<% for page in @chapter.pages do %>
+		<div class="item"><a href="<%= edit_page_path(id: page.id) %>"><img class="lazyOwl" data-src="<%= page.image.url %>" alt="Lazy Owl Image" style="max-width:100%"></a></div>
+	<% end %>
+</div>
+

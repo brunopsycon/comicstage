@@ -1,0 +1,15 @@
+<div class='container'>
+	<%= form_for :user do |f|%>
+		<%= f.label :email %><br>
+		<%= f.text_field :email , class: 'form-control' %><br>
+		<%= f.label :avatar %><br>
+		<%= f.file_field :avatar, class: 'file' %><br>
+		<%= f.label :cover %><br>
+		<%= f.file_field :cover, class: 'file' %><br>
+		<%= f.label :first_name %><br>
+		<%= f.text_field :first_name , class: 'form-control' %><br>
+		<%= f.label :last_name %><br>
+		<%= f.text_field :last_name , class: 'form-control' %><br>
+		<%= f.submit :register , class: 'btn btn-default' %>
+	<% end %>
+</div>

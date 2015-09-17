@@ -1,0 +1,16 @@
+<div class='container'>
+	<div style='height:200px;overflow:hidden'>
+		<%= image_tag @comic.cover.url(:normal), class: 'col-md-12' %>
+	</div>
+	<h1><%= link_to session_user.full_name, panel_path%> > <%= @comic.name %></h1>
+	<p><%= @comic.description%></p>
+	<%= link_to 'view public link',"comic/#{@comic.id}"%>
+	<ul>
+	<% for chapter in @comic.chapters do %>
+		<li><%= link_to "#{chapter.index} - #{chapter.caption}" , edit_chapter_path(id: chapter.id) %></li>
+	<% end %>
+	</ul>
+	<br>
+	<p>Add chapter <%= link_to 'here', new_chapter_path(comic_id: params[:id]) %></p>
+	<%= link_to 'DELETE THIS COMIC', delete_comic_path(id: @comic.id), class: 'btn btn-warning',  onclick: "return confirm('Are you sure, this process can not be undone?')" %>
+</div>

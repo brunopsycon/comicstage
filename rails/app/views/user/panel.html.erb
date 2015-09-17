@@ -1,0 +1,15 @@
+<div class='container'>
+	<div class='col-md-2'>
+		<%= image_tag session_user.avatar.url, style: 'width:140px' %>
+	</div>
+	<div class='col-md-10'>
+		<b>Hello <%=session_user.first_name%></b>
+		<h1>Your comics:</h1>
+		<% if session_user.comics.count > 0 %>
+			<%= render 'comics' %>
+			<p>Upload more comics <%= link_to 'here', new_comic_path %></p>
+		<% else %>
+			<p>You have no comics uploaded in our servers. Upload your first comic <%= link_to 'here', new_comic_path %>!</p>
+		<% end %>
+	</div>
+</div>

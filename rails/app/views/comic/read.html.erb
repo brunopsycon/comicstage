@@ -1,0 +1,94 @@
+<style>
+canvas{
+	width:100%;
+	height:100vh;
+}
+</style>
+<script>
+window.onload = function() {
+	var url_list = <%= raw @comic.chapters.map{|chapter| chapter.pages.map{|page| page.image.url }}%>
+	var data=<%= @comic.chapters.map{|chapter| chapter.pages.map{|page| (if (page.coordinates) then page.coordinates.split(',').map{|coordinate| coordinate.to_f} else [0,0,1000,1000] end ) }}%>
+	var t=0;
+	var index_page =1;
+	var index_chapter = 1;
+	var panels_count = data[index_chapter-1][index_page-1].length/4
+	var c = document.getElementById("editor");
+	var w=c.offsetWidth,h=c.offsetHeight,x0,y0,x1,y1,x0_prev=0, y0_prev=0, x1_prev=0, y1_prev=0;
+	c.width=w;
+	c.height=h;
+	function max(a,b){return a>b?a:b;}
+	function abs(x){return x>0?x:-x}
+	function sign(x){return x>0?1:-1;}
+	function animate(){
+		var speed=.03;
+		x0_prev+=speed*sign(x0-x0_prev);
+		y0_prev+=speed*sign(y0-y0_prev);
+		x1_prev+=speed*sign(x1-x1_prev);
+		y1_prev+=speed*sign(y1-y1_prev);
+		/*
+		x0_prev=(x0+x0_prev)/2;
+		y0_prev=(y0+y0_prev)/2;
+		x1_prev=(x1+x1_prev)/2;
+		y1_prev=(y1+y1_prev)/2;
+		*/
+		var w_fit=max(x1_prev-x0_prev,(y1_prev-y0_prev)*w/h);
+		var h_fit=max(y1_prev-y0_prev,(x1_prev-x0_prev)*h/w);
+		setTimeout(
+		function(){
+			if(abs(x0-x0_prev)+abs(y0-y0_prev)+abs(x1-x1_prev)+abs(y1-y1_prev)>4){
+				animate();
+			}
+			ctx.fillRect(0,0,w,h);
+			//img,original,real
+			ctx.drawImage(img,(x0_prev+x1_prev-w_fit)/2,(y0_prev+y1_prev-h_fit)/2,w_fit,h_fit,0,0,w,h);
+		}, 30);
+		
+	}
+	function updateImage(){
+		if(t>=4*panels_count){
+			index_page++;
+			t=0;
+		}
+		if(t<0){
+			index_page--;
+			panels_count = data[index_chapter-1][index_page-1].length/4
+			t=4*(panels_count-1);
+		}
+		panels_count = data[index_chapter-1][index_page-1].length/4
+		img.src = url_list[index_chapter-1][index_page-1];
+		x0=data[index_chapter-1][index_page-1][t];
+		y0=data[index_chapter-1][index_page-1][t+1];
+		x1=data[index_chapter-1][index_page-1][t+2];
+		y1=data[index_chapter-1][index_page-1][t+3];
+		animate();
+	}
+	var ctx = c.getContext("2d");
+	ctx.fillStyle = '<%= @comic.background_color %>'
+	var img = new Image();
+	img.onload = function() {
+		updateImage();
+	};
+	img.src = url_list[index_chapter-1][index_page-1];
+	document.addEventListener('keydown', function(event) {
+			switch(event.keyCode){
+				case 37:
+					t-=4;
+					updateImage();
+					break;
+				case 39:
+					t+=4;
+					updateImage();
+					break;
+			}
+	}, false);
+}
+</script>
+	<canvas id='editor'>
+	</canvas>
+<div class='container'>
+	<div class='col-md-12'>
+	</div>
+</div>
+<div class='col-md-12' style='text-align:center'>
+	<div class="fb-comments" data-href="http://google.com" data-numposts="5" data-width='100%'></div>
+</div>
